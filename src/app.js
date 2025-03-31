@@ -3,17 +3,15 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
-})); 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://nuxt-hzcz4a9ji-alessandrosfreitas-projects.vercel.app',
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
-
-// Middleware global
 app.use(express.json());
 
 // Routes
@@ -33,7 +31,6 @@ app.get('/', (req, res) => {
 module.exports = app;
 
 // List all routes on the console
-
 function listRoutes(app) {
   console.log('\n📡 ROTAS REGISTRADAS:\n');
   app._router.stack.forEach((middleware) => {
