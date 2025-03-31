@@ -2,12 +2,22 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://nuxt-hzcz4a9ji-alessandrosfreitas-projects.vercel.app',
+];
+
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'https://nuxt-hzcz4a9ji-alessandrosfreitas-projects.vercel.app',
-  ],
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
