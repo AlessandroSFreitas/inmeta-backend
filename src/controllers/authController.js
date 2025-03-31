@@ -18,6 +18,7 @@ async function register(req, res) {
 
 async function login(req, res) {
   const { username, password } = req.body;
+  const jwtSecret = process.env.JWT_SECRET;
 
   try {
     const user = await User.findOne({ username });
@@ -34,7 +35,7 @@ async function login(req, res) {
 
     const token = jwt.sign(
       { id: user._id, username: user.username },
-      'JABCLKjdbckasjcASJKCB',
+      jwtSecret,
       { expiresIn: '1h' }
     );
 
