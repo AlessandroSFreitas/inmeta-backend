@@ -5,6 +5,7 @@ const app = express();
 const allowedOrigins = [
   'https://nuxt-hzcz4a9ji-alessandrosfreitas-projects.vercel.app',
   'http://localhost:3001',
+  'http://localhost:3000',
 ];
 
 app.use(cors({
