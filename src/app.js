@@ -8,6 +8,8 @@ const allowedOrigins = [
   'http://localhost:3000',
 ];
 
+const origin_test = 'https://nuxt-hzcz4a9ji-alessandrosfreitas-projects.vercel.app';
+
 app.use(cors({
   origin: (origin, callback) => {
     console.log('Origin recebida:', origin);
@@ -17,8 +19,8 @@ app.use(cors({
       return callback(null, true);
     }
 
-    if (allowedOrigins.includes(origin)) {
-      console.log(`Origem permitida: ${origin}`);
+    if (allowedOrigins.includes(origin_test)) {
+      console.log(`Origem permitida: ${origin_test}`);
       return callback(null, true);
     } else {
       console.log(`Origem bloqueada: ${origin}`);
